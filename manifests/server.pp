@@ -1,5 +1,5 @@
 class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
-  include openvpn::install
+  include openvpn::install, openvpn::service
 
   exec { "openvpn_dh":
     command => "/usr/bin/openssl dhparam -out $keyfile 1024",
@@ -15,7 +15,7 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
     owner   => root,
     group   => root,
     source  => "puppet:///modules/openvpn_server/configs",
-    notify  => Service[openvpn],
+    notify  => Class['openvpn::service'],
   }
 
   file { "/etc/openvpn/net.conf":
@@ -24,6 +24,6 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
     group   => root,
     mode    => 0644,
     content => template("openvpn/server-net.erb"),
-    notify  => Service[openvpn]
+    notify  => Class['openvpn::service'],
   }
 }
