@@ -8,8 +8,7 @@ class openvpn::client ($server = NULL, $client_ip = NULL) {
     require => Package["openvpn"],
   }
 
-  file { "openvpn_dir":
-    path    => "/etc/openvpn",
+  file { "/etc/openvpn":
     ensure  => "directory",
     recurse => true,
     purge   => true,
@@ -20,12 +19,10 @@ class openvpn::client ($server = NULL, $client_ip = NULL) {
     source  => "puppet:///modules/openvpn/client-configs",
   }
 
-  file { "openvpn_conf":
-    path    => "/etc/openvpn/net.conf",
+  file { "/etc/openvpn/net.conf":
     owner   => "root",
     group   => "root",
     mode    => "0644",
-    require => File[openvpn_dir],
     content => template("openvpn/client-net.erb"),
     notify  => Service[openvpn]
   }
