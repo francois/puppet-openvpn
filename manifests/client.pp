@@ -1,12 +1,5 @@
 class openvpn::client ($server, $client_ip) {
-  package { "openvpn":
-    ensure => installed
-  }
-
-  service { "openvpn":
-    ensure  => running,
-    require => Package[openvpn],
-  }
+  include openvpn::install
 
   file { "/etc/openvpn":
     ensure  => directory,
