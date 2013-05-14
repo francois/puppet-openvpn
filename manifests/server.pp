@@ -2,7 +2,7 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
   include openvpn::install, openvpn::service
 
   exec { "openvpn_dh":
-    command => "/usr/bin/openssl dhparam -out $keyfile 1024",
+    command => "/bin/mkdir -p $( /usr/bin/dirname ${keyfile} ) && /usr/bin/openssl dhparam -out ${keyfile} 1024",
     creates => $keyfile,
     require => File["/etc/openvpn"],
   }
