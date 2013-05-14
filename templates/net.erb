@@ -1,8 +1,8 @@
 mode server
 
 ca /var/lib/puppet/ssl/certs/ca.pem
-cert /var/lib/puppet/ssl/certs/<%= @fqdn %>.pem
-key /var/lib/puppet/ssl/private_keys/<%= @fqdn %>.pem
+cert /var/lib/puppet/ssl/certs/<%= fqdn %>.pem
+key /var/lib/puppet/ssl/private_keys/<%= fqdn %>.pem
 dh <%= dh_file %>
 
 proto udp
