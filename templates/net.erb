@@ -1,7 +1,9 @@
 client
-ca net/keys/ca.crt
-cert net/keys/clients.crt
-key net/keys/clients.key
+
+ca /var/lib/puppet/ssl/certs/ca.pem
+cert /var/lib/puppet/ssl/certs/<%= @fqdn %>.pem
+key /var/lib/puppet/ssl/private_keys/<%= @fqdn %>.pem
+
 dev tun
 proto udp
 remote <%= @server %> 1194
@@ -10,10 +12,10 @@ nobind
 persist-key
 persist-tun
 mute-replay-warnings
-ns-cert-type server
+;ns-cert-type server
 verb 3
 mute 20
 cipher none
 topology subnet
-ifconfig <%= @client_ip %> 255.255.255.0
-#ifconfig-push <%= @client_ip %> 10.100.1.1
+;ifconfig <%= @client_ip %> 255.255.255.0
+;ifconfig-push <%= @client_ip %> 10.100.1.1
