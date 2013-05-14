@@ -31,7 +31,7 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
     owner   => root,
     group   => root,
     mode    => 0644,
-    content => template("openvpn/server/net.erb"),
+    content => template("openvpn/server-net.erb"),
     notify  => Service[openvpn]
   }
 }
