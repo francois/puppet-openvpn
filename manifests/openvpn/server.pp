@@ -1,12 +1,12 @@
 class openvpn::server($dh_file="/etc/openvpn/net/keys/dh1024.pem"){
 
   package { "openvpn":
-    ensure => "installed"
+    ensure => installed,
   }
 
   service { "openvpn":
     ensure  => "running",
-    require => Package["openvpn"],
+    require => Package[openvpn],
   }
 
   exec { "openvpn_dh":
@@ -24,7 +24,7 @@ class openvpn::server($dh_file="/etc/openvpn/net/keys/dh1024.pem"){
     owner   => root,
     group   => root,
     source  => "puppet:///modules/openvpn_server/configs",
-    notify  => Service["openvpn"],
+    notify  => Service[openvpn],
   }
 
   file { "/etc/openvpn/net.conf":
