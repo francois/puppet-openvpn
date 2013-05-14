@@ -12,7 +12,6 @@ class openvpn::server($dh_file="/etc/openvpn/net/keys/dh1024.pem"){
   exec { "openvpn_dh":
     command => "/usr/bin/openssl dhparam -out $dh_file 1024",
     creates => $dh_file,
-    path    => ["/usr/bin", "/usr/sbin"],
     require => File["/etc/openvpn"],
   }
 
