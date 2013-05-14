@@ -1,5 +1,4 @@
 mode server
-#client-config-dir /etc/openvpn/net/client-configs
 
 ca /var/lib/puppet/ssl/certs/ca.pem
 cert /var/lib/puppet/ssl/certs/<%= @fqdn %>.pem
@@ -13,6 +12,7 @@ user nobody
 status net/openvpn-status.log
 dev tun0
 cipher none
+;client-config-dir /etc/openvpn/net/client-configs
 ifconfig-pool-persist net/vpn-ipp.txt
 persist-key
 persist-tun
