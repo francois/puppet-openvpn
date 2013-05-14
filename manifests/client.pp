@@ -3,13 +3,8 @@ class openvpn::client ($server, $client_ip) {
 
   file { "/etc/openvpn":
     ensure  => directory,
-    recurse => true,
-    purge   => true,
-    force   => true,
-    notify  => Class['openvpn::service'],
     owner   => root,
     group   => root,
-    source  => "puppet:///modules/openvpn/client-configs",
   }
 
   file { "/etc/openvpn/net.conf":

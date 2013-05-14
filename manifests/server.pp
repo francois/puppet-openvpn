@@ -9,13 +9,8 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
 
   file { "/etc/openvpn":
     ensure  => directory,
-    recurse => true,
-    purge   => false,
-    force   => false,
     owner   => root,
     group   => root,
-    source  => "puppet:///modules/openvpn_server/configs",
-    notify  => Class['openvpn::service'],
   }
 
   file { "/etc/openvpn/net.conf":
