@@ -1,4 +1,4 @@
-class openvpn::client ($server = NULL, $client_ip = NULL) {
+class openvpn::client ($server, $client_ip) {
   package { "openvpn":
     ensure => installed
   }
