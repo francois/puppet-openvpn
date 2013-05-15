@@ -8,9 +8,21 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
   }
 
   file { "/etc/openvpn":
-    ensure  => directory,
-    owner   => root,
-    group   => root,
+    ensure => directory,
+    owner  => root,
+    group  => root,
+  }
+
+  file{'/etc/openvpn/net':
+    ensure => directory,
+    owner  => root,
+    group  => root,
+  }
+
+  file{'/etc/openvpn/net/client-configs':
+    ensure => directory,
+    owner  => root,
+    group  => root,
   }
 
   file { "/etc/openvpn/net.conf":
@@ -21,4 +33,7 @@ class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
     content => template("openvpn/server-net.erb"),
     notify  => Class['openvpn::service'],
   }
+
+  Openvpn::Client_config <| |> ~> Class['openvpn::service']
+  Openvpn::Client_config <<| |>>
 }

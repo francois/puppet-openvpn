@@ -1,4 +1,4 @@
-class openvpn::client ($server, $client_ip) {
+class openvpn::client($server, $client_ip=undef){
   include openvpn::install, openvpn::service
 
   file { "/etc/openvpn":
@@ -13,5 +13,17 @@ class openvpn::client ($server, $client_ip) {
     mode    => 0644,
     content => template("openvpn/client-net.erb"),
     notify  => Class['openvpn::service'],
+  }
+
+  if $client_ip {
+    @@openvpn::client_config{$hostname:
+      ensure    => present,
+      client_ip => client_ip,
+    }
+  } else {
+    @@openvpn::client_config{$hostname:
+      ensure    => absent,
+      client_ip => client_ip,
+    }
   }
 }
