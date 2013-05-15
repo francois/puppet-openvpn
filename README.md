@@ -19,3 +19,8 @@ Usage
     }
 
 This module is used in production on Ubuntu 12.04.
+
+WARNING
+=======
+
+At the moment, no encryption is established in this module. Patches welcome.
