@@ -19,13 +19,11 @@ class openvpn::client($server, $client_ip=undef, $compress=true){
     @@openvpn::client_config{$hostname:
       ensure    => present,
       client_ip => $client_ip,
-      compress  => $compress,
     }
   } else {
     @@openvpn::client_config{$hostname:
       ensure    => absent,
       client_ip => $client_ip,
-      compress  => $compress,
     }
   }
 }
