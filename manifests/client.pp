@@ -23,7 +23,7 @@ class openvpn::client($server, $client_ip=undef, $compress=true){
   } else {
     @@openvpn::client_config{$hostname:
       ensure    => absent,
-      client_ip => $client_ip,
+      client_ip => '0.0.0.0',
     }
   }
 }
