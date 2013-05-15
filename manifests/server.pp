@@ -1,4 +1,4 @@
-class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem"){
+class openvpn::server($keyfile="/etc/openvpn/net/keys/dh1024.pem", $compress=true){
   include openvpn::install, openvpn::service
 
   exec { "openvpn_dh":

@@ -1,1 +1,6 @@
-ifconfig-push <%= @client_ip %> <%= @client_ip.succ %>
+<% if client_ip %>
+ifconfig-push <%= client_ip %> <%= client_ip.succ %>
+<% end %>
+<% if compress %>
+comp-lzo
+<% end %>

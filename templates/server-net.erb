@@ -23,3 +23,7 @@ server 10.100.1.0 255.255.255.0
 keepalive 5 120
 ;tls-auth ta.key 0
 ;ns-cert-type server
+
+<% if compress %>
+comp-lzo
+<% end %>

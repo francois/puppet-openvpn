@@ -1,4 +1,4 @@
-class openvpn::client($server, $client_ip=undef){
+class openvpn::client($server, $client_ip=undef, $compress=true){
   include openvpn::install, openvpn::service
 
   file { "/etc/openvpn":
@@ -18,12 +18,14 @@ class openvpn::client($server, $client_ip=undef){
   if $client_ip {
     @@openvpn::client_config{$hostname:
       ensure    => present,
-      client_ip => client_ip,
+      client_ip => $client_ip,
+      compress  => $compress,
     }
   } else {
     @@openvpn::client_config{$hostname:
       ensure    => absent,
-      client_ip => client_ip,
+      client_ip => $client_ip,
+      compress  => $compress,
     }
   }
 }
