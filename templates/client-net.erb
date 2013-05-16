@@ -6,6 +6,8 @@ key /var/lib/puppet/ssl/private_keys/<%= hostname %>.pem
 
 dev tun
 proto udp
+group nogroup
+user nobody
 remote <%= server %> 1194
 resolv-retry infinite
 nobind
