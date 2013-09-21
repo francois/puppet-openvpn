@@ -1,8 +1,8 @@
 client
 
 ca /var/lib/puppet/ssl/certs/ca.pem
-cert /var/lib/puppet/ssl/certs/<%= hostname %>.pem
-key /var/lib/puppet/ssl/private_keys/<%= hostname %>.pem
+cert <%= File.file?("/var/lib/puppet/ssl/certs/#{hostname}.pem") ? "/var/lib/puppet/ssl/certs/#{hostname}.pem" : "/var/lib/puppet/ssl/certs/#{fqdn}.pem" %>
+key <%= File.file?("/var/lib/puppet/ssl/private_keys/#{hostname}.pem") ? "/var/lib/puppet/ssl/private_keys/#{hostname}.pem" : "/var/lib/puppet/ssl/private_keys/#{fqdn}.pem" %>
 
 dev tun
 proto udp
