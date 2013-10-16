@@ -24,6 +24,8 @@ keepalive 5 120
 ;tls-auth ta.key 0
 ;ns-cert-type server
 
+route 10.0.43.0 255.255.255.0 10.100.1.1
+
 <% if compress %>
 comp-lzo
 <% end %>
