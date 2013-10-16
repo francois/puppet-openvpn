@@ -8,7 +8,7 @@ dev tun
 proto udp
 group nogroup
 user nobody
-remote <%= server %> 1194
+remote <%= @server %> 1194
 resolv-retry infinite
 nobind
 persist-key
@@ -20,6 +20,6 @@ mute 20
 cipher none
 topology subnet
 
-<% if compress %>
+<% if @compress %>
 comp-lzo
 <% end %>
