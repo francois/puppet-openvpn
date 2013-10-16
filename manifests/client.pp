@@ -1,4 +1,4 @@
-class openvpn::client($server, $client_ip=undef, $compress=true){
+class openvpn::client($server, $client_ip=undef, $compress=true, $cert="/var/lib/puppet/ssl/certs/${hostname}.pem", $key="/var/lib/ssl/private_keys/${hostname}.pem"){
   include openvpn::install, openvpn::service
 
   file { "/etc/openvpn":
